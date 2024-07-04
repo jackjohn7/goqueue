@@ -141,6 +141,7 @@ func (q *BasicQueue) handleConnection(c net.Conn) {
 }
 
 func (q *BasicQueue) Start() {
+	log.Printf("Listening for connections on %s\n", q.listener.Addr().String())
 	for {
 		c, err := q.listener.Accept()
 		if err != nil {
@@ -153,9 +154,8 @@ func (q *BasicQueue) Start() {
 func (q *BasicQueue) Stop() {
 }
 
-func New() (Queue, error) {
-	port := ":4173"
-	l, err := net.Listen("tcp4", port)
+func New(cfg Config) (Queue, error) {
+	l, err := net.Listen("tcp4", cfg.Addr.String())
 	if err != nil {
 		log.Printf("Err occurred: %s", err.Error())
 		return nil, err
