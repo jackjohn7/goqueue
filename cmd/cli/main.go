@@ -1,13 +1,12 @@
 package main
 
 import (
+	"github.com/jackjohn7/goqueue/lib/core/queue"
 	"log"
-
-	"github.com/jackjohn7/goqueue/lib"
 )
 
 func main() {
-	q, err := lib.NewBasic()
+	q, err := queue.New()
 	if err != nil {
 		log.Fatalln(err)
 	}

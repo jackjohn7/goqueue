@@ -1,8 +1,10 @@
-package lib
+package queue
 
 import (
 	"encoding/json"
 	"net"
+
+	qenc "github.com/jackjohn7/goqueue/lib/core/encoding"
 )
 
 type ClientMessageKind string
@@ -39,7 +41,7 @@ func (im ErrorMessage) Write(conn net.Conn) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	bytes = append(Escape(bytes), EndOfMessage)
+	bytes = append(qenc.Escape(bytes), EndOfMessage)
 	return conn.Write(bytes)
 }
 
@@ -52,7 +54,7 @@ func (ps SuccessMessage) Write(conn net.Conn) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	bytes = append(Escape(bytes), EndOfMessage)
+	bytes = append(qenc.Escape(bytes), EndOfMessage)
 	return conn.Write(bytes)
 }
 
@@ -66,6 +68,6 @@ func (pm PostMessage) Write(conn net.Conn) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	bytes = append(Escape(bytes), EndOfMessage)
+	bytes = append(qenc.Escape(bytes), EndOfMessage)
 	return conn.Write(bytes)
 }

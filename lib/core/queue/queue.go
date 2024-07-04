@@ -1,4 +1,4 @@
-package lib
+package queue
 
 import (
 	"bufio"
@@ -153,7 +153,7 @@ func (q *BasicQueue) Start() {
 func (q *BasicQueue) Stop() {
 }
 
-func NewBasic() (Queue, error) {
+func New() (Queue, error) {
 	port := ":4173"
 	l, err := net.Listen("tcp4", port)
 	if err != nil {
