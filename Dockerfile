@@ -20,4 +20,4 @@ COPY --from=builder /server /server
 
 EXPOSE 4173
 
-CMD ["./server"]
+ENTRYPOINT ["/server"]

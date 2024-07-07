@@ -155,7 +155,7 @@ func (q *BasicQueue) Stop() {
 }
 
 func New(cfg Config) (Queue, error) {
-	l, err := net.Listen("tcp4", cfg.Addr.String())
+	l, err := cfg.CreateListener()
 	if err != nil {
 		log.Printf("Err occurred: %s", err.Error())
 		return nil, err
